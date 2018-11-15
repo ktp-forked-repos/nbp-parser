@@ -27,7 +27,7 @@ public class NBPExchangeManager {
             System.exit(0);
         } catch (Exception e) {
             System.out.println(format("Unable to calculate exchange rate for currency: %s and date period: %s, %s", currencyCode, start, end));
-            System.out.println("Probably that day is weekend or holiday which is not supported in NbpParser 1.0");
+            System.out.println(e.getMessage());
             System.exit(-1);
         }
     }
