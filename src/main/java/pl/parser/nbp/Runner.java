@@ -44,7 +44,7 @@ public class Runner implements CommandLineRunner {
             }
             return Boolean.TRUE;
         } catch (Exception e) {
-            sendMessageToUser(format("Cannot validate input arguments: %s", Arrays.toString(args)));
+            sendMessageToUser(format("Cannot validate input arguments: %s", e.getMessage()));
             return Boolean.FALSE;
         }
     }

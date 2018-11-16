@@ -1,8 +1,6 @@
 package pl.parser.nbp.service;
 
 
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClientBuilder;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import pl.parser.nbp.http.AbstractHttpClient;
@@ -22,29 +20,18 @@ import static pl.parser.nbp.utils.XmlUtils.parseExchangeTable;
 @Service
 public class NBPService extends AbstractHttpClient {
 
-    @Value("${nbp.host}")
-    private String host;
+    @Value("${nbp.base.url}")
+    private String baseUrl;
 
     @Override
-    protected String getHost() {
-        return host;
-    }
-
-    @Override
-    protected Integer getPort() {
-        return null;
+    protected String getBaseUrl() {
+        return baseUrl;
     }
 
     @Override
     protected String getServiceName() {
         return "NBPService";
     }
-
-    @Override
-    protected CloseableHttpClient getHttpClient() {
-        return HttpClientBuilder.create().build();
-    }
-
 
     public List<ExchangeTable> retrieveExchangeTables(TableType tableType, LocalDate start, LocalDate end) throws IOException {
         List<String> filePatterns = retrieveExchangeRateFileNames(tableType, start, end);
